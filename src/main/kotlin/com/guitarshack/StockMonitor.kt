@@ -50,9 +50,6 @@ class StockMonitor(private val alert: Alert) {
     private fun getJson(url: String): String {
         val request = Request.Builder().url(url).build()
         client.newCall(request).execute().use { response ->
-            if (!response.isSuccessful) {
-                throw Exception("Unexpected code $response")
-            }
             return response.body?.string() ?: ""
         }
     }
